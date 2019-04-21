@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="studentMethodReplacer"
+          class="org.katheer.replacer.method.StudentMethodReplacer"/>
+    <bean id="courseMethodReplacer"
+          class="org.katheer.replacer.method.CourseMethodReplacer"/>
+
+    <bean id="course" class="org.katheer.bean.Course">
+        <property name="cname" value="Java"/>
+        <property name="ccost" value="7800"/>
+        <replaced-method name="courseDetails" replacer="courseMethodReplacer"/>
+    </bean>
+
+    <bean id="student" class="org.katheer.bean.Student">
+        <property name="name" value="Abdul Katheer"/>
+        <property name="course" ref="course"/>
+        <replaced-method name="getStudentDetails"
+                         replacer="studentMethodReplacer"/>
+    </bean>
+</beans>
